@@ -1,6 +1,6 @@
 {
     "name": "@protonemedia/form-components-pro-vue2-core",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "author": "Pascal Baljet <pascal@protone.media>",
     "homepage": "https://formcomponents.pro",
     "private": false,
@@ -52,5 +52,5 @@
         "vue": "^2.6.12",
         "vue-jest": "^3.0.7"
     },
-    "gitHead": "6b2688ff2345d1571222a8a26184a90e5c025569"
+    "gitHead": "516afe77a5a9fefc2f00e89a07d83f9b9506fa58"
 }
