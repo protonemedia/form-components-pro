@@ -1,0 +1,81 @@
+$choices-bg-color: white;
+
+@import "~choices.js/src/styles/choices";
+
+span+.#{$choices-selector} {
+    @apply mt-1;
+}
+
+.#{$choices-selector} {
+    .#{$choices-selector}__inner {
+        @apply block rounded-md border-gray-300 shadow-sm w-full;
+
+        padding-bottom: 1.25px;
+    }
+
+    &.is-focused {
+        .#{$choices-selector}__inner {
+            @apply border-blue-300 ring ring-blue-200 ring-opacity-50;
+        }
+    }
+
+    .#{$choices-selector}__inner {
+        @apply px-3 text-base bg-no-repeat;
+
+        .#{$choices-selector}__input {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-size: 1.5em 1.5em;
+    }
+
+    &[data-type*="select-one"] {
+        .#{$choices-selector}__input {
+            @apply px-4 text-base;
+
+            box-shadow: none;
+
+            &::placeholder {
+                @apply text-gray-700;
+            }
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+
+    .#{$choices-selector}__list--dropdown {
+        @apply mt-1 shadow-lg rounded-md border-gray-300;
+
+        .#{$choices-selector}__item--selectable {
+            @apply text-gray-900 text-base px-4;
+
+            &.is-highlighted {
+                @apply bg-blue-600 text-white;
+            }
+        }
+    }
+
+    .#{$choices-selector}__list--multiple {
+        .#{$choices-selector}__item {
+            @apply bg-blue-600 border-blue-600 rounded-md font-medium;
+        }
+    }
+
+    &[data-type*="select-multiple"] {
+        .#{$choices-selector}__button {
+            @apply border-none px-3 mx-0;
+        }
+
+        .#{$choices-selector}__input {
+            @apply ml-1 pl-0;
+
+            min-width: 2ch !important;
+        }
+    }
+}

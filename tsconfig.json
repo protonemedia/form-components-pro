@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "es2018",
+        "noEmit": true,
+        "jsx": "react"
+    }
+}

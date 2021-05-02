@@ -1,0 +1,35 @@
+<template>
+  <div :class="{ 'hidden': type == 'hidden', 'mt-4': label}">
+    <label class="block">
+      <Label :label="label" />
+
+      <input
+        :name="name"
+        :type="type"
+        v-bind="$attrs"
+        v-on="listenersWithoutInput"
+        v-model="model"
+        ref="input"
+        class="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+        :class="{'mt-1': label}"
+      />
+    </label>
+
+    <Error v-if="errorMessage" :message="errorMessage" />
+  </div>
+</template>
+
+<script>
+import { Input } from "@protonemedia/form-components-pro-vue2-core";
+import Error from "./Error.vue";
+import Label from "./Label.vue";
+
+export default {
+  components: {
+    Error,
+    Label,
+  },
+
+  mixins: [Input],
+};
+</script>
