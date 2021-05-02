@@ -40,5 +40,6 @@
         "@rollup/plugin-node-resolve": "^9.0.0",
         "rollup": "^2.29.0",
         "rollup-plugin-vue": "^5.1.9"
-    }
+    },
+    "gitHead": "09da89e6529bc0f070f98a1012e80e12e3f12585"
 }

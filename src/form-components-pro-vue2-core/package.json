@@ -53,5 +53,6 @@
         "rollup-plugin-vue": "^5.1.9",
         "vue": "^2.6.12",
         "vue-jest": "^3.0.7"
-    }
+    },
+    "gitHead": "09da89e6529bc0f070f98a1012e80e12e3f12585"
 }
