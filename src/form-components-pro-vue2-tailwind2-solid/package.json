@@ -3,9 +3,6 @@
     "version": "1.0.2",
     "author": "Pascal Baljet <pascal@protone.media>",
     "homepage": "https://formcomponents.pro",
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
-    },
     "repository": {
         "type": "git",
         "url": "git://github.com/protonemedia/form-components-pro.git",
@@ -41,5 +38,5 @@
         "rollup": "^2.29.0",
         "rollup-plugin-vue": "^5.1.9"
     },
-    "gitHead": "09da89e6529bc0f070f98a1012e80e12e3f12585"
+    "gitHead": "d31cfa1044a631942a5b3999bd80e492b03066ff"
 }
