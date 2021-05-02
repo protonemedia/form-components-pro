@@ -2,10 +2,5 @@
     "version": "1.0.0",
     "packages": [
         "src/*"
-    ],
-    "command": {
-        "publish": {
-            "registry": "https://npm.pkg.github.com"
-        }
-    }
+    ]
 }
