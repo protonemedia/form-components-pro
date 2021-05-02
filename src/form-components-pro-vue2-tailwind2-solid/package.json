@@ -1,6 +1,6 @@
 {
     "name": "@protonemedia/form-components-pro-vue2-tailwind2-solid",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Pascal Baljet <pascal@protone.media>",
     "homepage": "https://formcomponents.pro",
     "repository": {
@@ -18,7 +18,7 @@
         "run-link": "yarn link"
     },
     "dependencies": {
-        "@protonemedia/form-components-pro-vue2-core": "^1.0.2"
+        "@protonemedia/form-components-pro-vue2-core": "^1.0.3"
     },
     "peerDependencies": {
         "vue": "^2.0.0"
