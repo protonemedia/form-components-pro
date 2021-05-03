@@ -62,4 +62,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## Treeware
 
-This package is [Treeware](https://treeware.earth). If you use it in production, we ask that you [**buy the world a tree**](https://plant.treeware.earth/pascalbaljetmedia/laravel-cross-eloquent-search) to thank us for our work. By contributing to the Treeware forest, you'll create employment for local families and restoring wildlife habitats.
+This package is [Treeware](https://treeware.earth). If you use it in production, we ask that you [**buy the world a tree**](https://plant.treeware.earth/protonemedia/form-components-pro) to thank us for our work. By contributing to the Treeware forest, you'll create employment for local families and restoring wildlife habitats.
