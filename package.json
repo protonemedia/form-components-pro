@@ -29,5 +29,6 @@
         "tailwindcss": "^2.0.0",
         "typescript": "^3.8.2",
         "vue-template-compiler": "^2.6.11"
-    }
+    },
+    "dependencies": {}
 }

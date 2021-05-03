@@ -1,10 +1,13 @@
 # Form Components Pro
 
+A set of Vue components to rapidly build forms with Tailwind CSS v2.0. It supports validation, model binding, includes default vendor styling and is fully customizable!
+
 ## Features
 
-* Components for input, textarea, select, multi-select, checkbox and radio elements.
+* Components for input, textarea, file, multi-file, select, multi-select, checkbox and radio elements.
 * Support for Tailwind v2 with [Tailwind Forms](https://tailwindcss-forms.vercel.app/).
 * Support for Vue 2.6.
+* Support for the [Inertia.js Form Helper](https://inertiajs.com/forms#form-helper).
 * Component scripts independent from templates. All templates use the same logic.
 * Bind a target to a form (or a set of elements) to provide default values (model binding).
 * Validation errors.
@@ -18,7 +21,7 @@ We proudly support the community by developing libraries and packages and giving
 
 ## Documentation
 
-You can find the documentation at [docs.formcomponents.pro](https://docs.formcomponents.pro).
+You can find the documentation at [docs.formcomponents.pro](https://docs.formcomponents.pro) and at [GitHub](https://github.com/protonemedia/form-components-pro-docs).
 
 ## Changelog
 
@@ -49,6 +52,14 @@ If you discover any security related issues, please email pascal@protone.media i
 - [Pascal Baljet](https://github.com/protonemedia)
 - [All Contributors](../../contributors)
 
+## Security
+
+If you discover any security-related issues, please email pascal@protone.media instead of using the issue tracker.
+
 ## License
 
-This project is under the [Sponsorware license](https://github.com/sponsorware/docs/blob/master/README.md).
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Treeware
+
+This package is [Treeware](https://treeware.earth). If you use it in production, we ask that you [**buy the world a tree**](https://plant.treeware.earth/pascalbaljetmedia/laravel-cross-eloquent-search) to thank us for our work. By contributing to the Treeware forest, you'll create employment for local families and restoring wildlife habitats.

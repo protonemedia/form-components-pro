@@ -79,9 +79,17 @@ export default {
       const vm = this;
 
       this.withFlatpickr((Flatpickr) => {
-        const options = isObject(vm.date)
-          ? Object.assign({}, vm.defaultFlatpickrOptions, vm.date)
-          : vm.defaultFlatpickrOptions;
+        const customOptions = isObject(vm.time)
+          ? vm.time
+          : isObject(vm.date)
+          ? vm.date
+          : {};
+
+        const options = Object.assign(
+          {},
+          vm.defaultFlatpickrOptions,
+          customOptions
+        );
 
         const dateFormat = options.dateFormat;
 

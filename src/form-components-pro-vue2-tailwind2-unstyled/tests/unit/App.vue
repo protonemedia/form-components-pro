@@ -60,6 +60,7 @@
         <Input name="time" id="time-input-injected" :time="true" />
         <Input name="datetime" id="time-input-injected" :date="true" :time="true" />
         <Input name="customDate" id="date-input-injected" :date="{ dateFormat: 'd-m-Y' }" />
+        <Input name="customTime" id="time-input-injected" :time="{ dateFormat: 'i:H' }" />
 
         <Textarea name="textarea" id="autosize-textarea-injected" :autosize="true" />
 

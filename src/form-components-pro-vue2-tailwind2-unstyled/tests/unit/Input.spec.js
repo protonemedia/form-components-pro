@@ -116,7 +116,7 @@ describe('Tailwind v2 Input.vue', () => {
         expect(input.flatpickrInstance.config.dateFormat).toEqual("Y-m-d H:i")
     })
 
-    it('can give flatpickr a custom set of options', async () => {
+    it('can give flatpickr a custom set of options on the date attribute', async () => {
         const wrapper = mount(Component)
         await wrapper.vm.$nextTick();
 
@@ -128,5 +128,19 @@ describe('Tailwind v2 Input.vue', () => {
 
         expect(input.flatpickrInstance).not.toBeNull();
         expect(input.flatpickrInstance.config.dateFormat).toEqual("d-m-Y")
+    })
+
+    it('can give flatpickr a custom set of options on the time attribute', async () => {
+        const wrapper = mount(Component)
+        await wrapper.vm.$nextTick();
+
+        const miscForm = wrapper.find('#misc-form');
+
+        const input = find(miscForm.vm.$children, (child) => {
+            return child.$el.__vue__.name === "customTime";
+        })
+
+        expect(input.flatpickrInstance).not.toBeNull();
+        expect(input.flatpickrInstance.config.dateFormat).toEqual("i:H")
     })
 })
