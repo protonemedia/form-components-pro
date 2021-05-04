@@ -36,7 +36,6 @@ export default {
       choicesInstance: null,
 
       defaultChoicesOptions: {
-        removeItemButton: this.multiple,
         itemSelectText: "",
         shouldSort: false,
         searchPlaceholderValue: "Search...",
@@ -45,6 +44,14 @@ export default {
   },
 
   computed: {
+    optionsContainPlaceholder() {
+      return find(this.mappedOptions, (option) => {
+        return option.value === "";
+      })
+        ? true
+        : false;
+    },
+
     model: {
       get: function () {
         if (this.hasFormContext) {
@@ -99,13 +106,62 @@ export default {
       import(/* webpackChunkName: "ChoicesJs" */ "choices.js").then(callback);
     },
 
+    getItemOfCurrentModel() {
+      const currentModel = this.model;
+
+      return find(this.choicesInstance._store.choices, (item) => {
+        return item.value == currentModel;
+      });
+    },
+
+    getSelectedItem() {
+      return find(this.choicesInstance._store.choices, (item) => {
+        return item.selected;
+      });
+    },
+
+    unselectSelectedItemWhenDifferentThanModel(options) {
+      const currentModel = this.model;
+
+      const currentModelOption = find(this.mappedOptions, (option) => {
+        return option.value === currentModel;
+      });
+
+      if (currentModelOption) {
+        return;
+      }
+
+      const itemToRemove = this.getSelectedItem();
+
+      // Remove item associated with button
+      this.choicesInstance._removeItem(itemToRemove);
+      this.choicesInstance._triggerChange(itemToRemove.value);
+
+      if (
+        this.choicesInstance._isSelectOneElement &&
+        this.choicesInstance._store.placeholderChoice
+      ) {
+        this.choicesInstance._selectPlaceholderChoice(
+          this.choicesInstance._store.placeholderChoice
+        );
+      }
+    },
+
     initChoices(selectElement) {
       const vm = this;
 
       this.withChoices((Choices) => {
+        let defaultChoicesOptions = Object.assign(
+          {},
+          vm.defaultChoicesOptions,
+          {
+            removeItemButton: vm.optionsContainPlaceholder,
+          }
+        );
+
         const options = isObject(vm.choices)
-          ? Object.assign({}, vm.defaultChoicesOptions, vm.choices)
-          : vm.defaultChoicesOptions;
+          ? Object.assign({}, defaultChoicesOptions, vm.choices)
+          : defaultChoicesOptions;
 
         vm.choicesInstance = new Choices.default(selectElement, options);
 
@@ -146,10 +202,7 @@ export default {
             return;
           }
 
-          const item = find(vm.choicesInstance._store.choices, (item) => {
-            return item.value == vm.model;
-          });
-
+          const item = vm.getItemOfCurrentModel();
           const itemElement = vm.choicesInstance.dropdown.element.querySelector(
             `.choices__item[data-id="${item.id}"]`
           );
@@ -157,6 +210,8 @@ export default {
           vm.choicesInstance.choiceList.scrollToChildElement(itemElement, 1);
           vm.choicesInstance._highlightChoice(itemElement);
         });
+
+        this.unselectSelectedItemWhenDifferentThanModel(options);
       });
     },
   },
