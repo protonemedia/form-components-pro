@@ -124,7 +124,7 @@ export default {
       const currentModel = this.model;
 
       const currentModelOption = find(this.mappedOptions, (option) => {
-        return option.value === currentModel;
+        return option.value == currentModel;
       });
 
       if (currentModelOption) {
