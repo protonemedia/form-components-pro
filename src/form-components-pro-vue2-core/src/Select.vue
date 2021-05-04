@@ -155,7 +155,7 @@ export default {
           {},
           vm.defaultChoicesOptions,
           {
-            removeItemButton: vm.optionsContainPlaceholder,
+            removeItemButton: vm.multiple ? true : vm.optionsContainPlaceholder,
           }
         );
 
