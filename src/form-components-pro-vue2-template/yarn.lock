@@ -999,7 +999,6 @@
     "merge-source-map" "^1.1.0"
     "postcss" "^7.0.14"
     "postcss-selector-parser" "^6.0.2"
-    "prettier" "^1.18.2"
     "source-map" "~0.6.1"
     "vue-template-es2015-compiler" "^1.9.0"
   optionalDependencies:
@@ -1013,12 +1012,8 @@
     "@vue/component-compiler-utils" "^3.0.0"
     "clean-css" "^4.1.11"
     "hash-sum" "^1.0.2"
-    "less" "^3.9.0"
     "postcss-modules-sync" "^1.0.0"
-    "pug" "^2.0.3"
-    "sass" "^1.18.0"
     "source-map" "0.6.*"
-    "stylus" "^0.54.5"
   optionalDependencies:
     "less" "^3.9.0"
     "pug" "^2.0.3"
@@ -2211,8 +2206,6 @@
   "integrity" "sha512-9rfr0Z6j+vE+eayfNVFr1KZ+k+jiUl2+0e4quZafy1x6SFCjzFspfRSO2ZZQeWeX9noeDTUDgg6eCENiEPFvQg=="
   "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.39.1.tgz"
   "version" "2.39.1"
-  dependencies:
-    "fsevents" "~2.3.1"
   optionalDependencies:
     "fsevents" "~2.3.1"
 
