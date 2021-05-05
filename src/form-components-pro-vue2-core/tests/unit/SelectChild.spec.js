@@ -2,6 +2,19 @@ import Component from './../../src/SelectChild.vue'
 import { mount, shallowMount } from '@vue/test-utils'
 
 describe('Vue 2 Core SelectChild.vue', () => {
+    it('renders a single option without a value', async () => {
+        const wrapper = mount(Component, {
+            propsData: {
+                option: {
+                    label: "Placeholder",
+                    value: ""
+                }
+            }
+        });
+
+        expect(wrapper.html()).toEqual('<option value="">Placeholder</option>');
+    })
+
     it('renders a single option', async () => {
         const wrapper = mount(Component, {
             propsData: {

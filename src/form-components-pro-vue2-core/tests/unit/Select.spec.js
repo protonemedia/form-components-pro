@@ -19,7 +19,7 @@ describe('Vue 2 Core Select.vue', () => {
             render() { }
         });
 
-        expect(wrapper.vm.mappedOptions).toEqual(options);
+        expect(wrapper.vm.arrayOptions).toEqual(options);
     })
 
     it('doesnt map an options array', async () => {
@@ -37,7 +37,56 @@ describe('Vue 2 Core Select.vue', () => {
             render() { }
         });
 
+        expect(wrapper.vm.arrayOptions).toEqual(options);
+    })
+
+    it('prepends a placeholder to the options if none is present', async () => {
+        const options = [
+            {
+                label: "Choose...",
+                placeholder: "placeholder",
+                value: ""
+            },
+            {
+                label: "Laravel",
+                value: "laravel"
+            }
+        ];
+
+        const wrapper = mount(Component, {
+            propsData: {
+                options: {
+                    laravel: "Laravel"
+                }
+            },
+            render() { }
+        });
+
         expect(wrapper.vm.mappedOptions).toEqual(options);
     })
 
+    it('doesnt prepend a placeholder if one is present', async () => {
+        const options = [
+            {
+                label: "Placeholder",
+                value: ""
+            },
+            {
+                label: "Laravel",
+                value: "laravel"
+            }
+        ];
+
+        const wrapper = mount(Component, {
+            propsData: {
+                options: {
+                    "": "Placeholder",
+                    laravel: "Laravel"
+                }
+            },
+            render() { }
+        });
+
+        expect(wrapper.vm.mappedOptions).toEqual(options);
+    })
 })
