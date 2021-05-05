@@ -44,6 +44,7 @@ describe('Vue 2 Core Select.vue', () => {
         const options = [
             {
                 label: "Choose...",
+                placeholder: "placeholder",
                 value: ""
             },
             {

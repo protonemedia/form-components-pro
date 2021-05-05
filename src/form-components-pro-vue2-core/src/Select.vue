@@ -37,7 +37,6 @@ export default {
 
       defaultChoicesOptions: {
         itemSelectText: "",
-        placeholder: this.label,
         removeItemButton: true,
         shouldSort: false,
         searchPlaceholderValue: "Search...",
@@ -46,12 +45,6 @@ export default {
   },
 
   computed: {
-    choicesOptions() {
-      return isObject(this.choices)
-        ? Object.assign({}, this.defaultChoicesOptions, this.choices)
-        : this.defaultChoicesOptions;
-    },
-
     optionsContainPlaceholder() {
       return find(this.arrayOptions, (option) => {
         return option.value === "";
@@ -99,14 +92,16 @@ export default {
         return options;
       }
 
-      options.unshift({
-        value: "",
-        label: this.choicesOptions.placeholder
-          ? this.choicesOptions.placeholder
-          : "Choose...",
-      });
+      const vm = this;
 
-      return options;
+      return [
+        {
+          value: "",
+          label: vm.label ? vm.label : "Choose...",
+          placeholder: "placeholder",
+        },
+        ...options,
+      ];
     },
   },
 
@@ -145,7 +140,7 @@ export default {
       });
     },
 
-    unselectSelectedItemWhenDifferentThanModel(options) {
+    unselectSelectedItemWhenDifferentThanModel() {
       const currentModel = this.model;
 
       const currentModelOption = find(this.mappedOptions, (option) => {
@@ -180,7 +175,9 @@ export default {
       const vm = this;
 
       this.withChoices((Choices) => {
-        const options = vm.choicesOptions;
+        const options = isObject(vm.choices)
+          ? Object.assign({}, vm.defaultChoicesOptions, vm.choices)
+          : vm.defaultChoicesOptions;
 
         vm.choicesInstance = new Choices.default(selectElement, options);
 
@@ -230,7 +227,9 @@ export default {
           vm.choicesInstance._highlightChoice(itemElement);
         });
 
-        this.unselectSelectedItemWhenDifferentThanModel(options);
+        if (options.removeItemButton) {
+          vm.unselectSelectedItemWhenDifferentThanModel();
+        }
       });
     },
   },
