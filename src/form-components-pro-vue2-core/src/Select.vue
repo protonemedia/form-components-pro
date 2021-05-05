@@ -37,6 +37,8 @@ export default {
 
       defaultChoicesOptions: {
         itemSelectText: "",
+        placeholder: this.label,
+        removeItemButton: true,
         shouldSort: false,
         searchPlaceholderValue: "Search...",
       },
@@ -44,8 +46,14 @@ export default {
   },
 
   computed: {
+    choicesOptions() {
+      return isObject(this.choices)
+        ? Object.assign({}, this.defaultChoicesOptions, this.choices)
+        : this.defaultChoicesOptions;
+    },
+
     optionsContainPlaceholder() {
-      return find(this.mappedOptions, (option) => {
+      return find(this.arrayOptions, (option) => {
         return option.value === "";
       })
         ? true
@@ -70,7 +78,7 @@ export default {
       },
     },
 
-    mappedOptions() {
+    arrayOptions() {
       if (Array.isArray(this.options)) {
         return this.options;
       }
@@ -82,6 +90,21 @@ export default {
       });
 
       return mappedOptions;
+    },
+
+    mappedOptions() {
+      let options = this.arrayOptions;
+
+      if (this.optionsContainPlaceholder || this.multiple) {
+        return options;
+      }
+
+      options.unshift({
+        value: "",
+        label: this.choicesOptions.placeholder,
+      });
+
+      return options;
     },
   },
 
@@ -155,17 +178,7 @@ export default {
       const vm = this;
 
       this.withChoices((Choices) => {
-        let defaultChoicesOptions = Object.assign(
-          {},
-          vm.defaultChoicesOptions,
-          {
-            removeItemButton: vm.multiple ? true : vm.optionsContainPlaceholder,
-          }
-        );
-
-        const options = isObject(vm.choices)
-          ? Object.assign({}, defaultChoicesOptions, vm.choices)
-          : defaultChoicesOptions;
+        const options = vm.choicesOptions;
 
         vm.choicesInstance = new Choices.default(selectElement, options);
 
