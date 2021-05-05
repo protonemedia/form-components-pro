@@ -85,7 +85,6 @@ describe('Tailwind v2 Select.vue', () => {
         })
 
         expect(select.choicesInstance).not.toBeNull();
-        expect(select.choicesInstance.config.removeItemButton).toBeFalsy();
     })
 
     it('uses the choices library to filter through multiple options', async () => {
@@ -99,7 +98,6 @@ describe('Tailwind v2 Select.vue', () => {
         })
 
         expect(select.choicesInstance).not.toBeNull();
-        expect(select.choicesInstance.config.removeItemButton).toBeTruthy();
     })
 
     //

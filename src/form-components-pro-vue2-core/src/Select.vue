@@ -101,7 +101,9 @@ export default {
 
       options.unshift({
         value: "",
-        label: this.choicesOptions.placeholder,
+        label: this.choicesOptions.placeholder
+          ? this.choicesOptions.placeholder
+          : "Choose...",
       });
 
       return options;
