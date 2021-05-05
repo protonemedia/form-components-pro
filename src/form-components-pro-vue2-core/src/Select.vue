@@ -227,7 +227,7 @@ export default {
           vm.choicesInstance._highlightChoice(itemElement);
         });
 
-        if (options.removeItemButton) {
+        if (!vm.multiple && options.removeItemButton) {
           vm.unselectSelectedItemWhenDifferentThanModel();
         }
       });
