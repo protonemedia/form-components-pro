@@ -133,6 +133,10 @@ export default {
 
       const itemToRemove = this.getSelectedItem();
 
+      if (!itemToRemove) {
+        return;
+      }
+
       // Remove item associated with button
       this.choicesInstance._removeItem(itemToRemove);
       this.choicesInstance._triggerChange(itemToRemove.value);
