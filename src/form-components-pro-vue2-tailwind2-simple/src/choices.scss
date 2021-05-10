@@ -47,6 +47,12 @@ span+.#{$choices-selector} {
         &::after {
             display: none;
         }
+
+        &.is-disabled {
+            .#{$choices-selector}__button {
+                @apply hidden;
+            }
+        }
     }
 
     .#{$choices-selector}__list--dropdown {

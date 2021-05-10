@@ -20,6 +20,11 @@ export default {
       required: false,
     },
 
+    disabled: {
+      type: Boolean,
+      required: false,
+    },
+
     options: {
       type: [Array, Object],
       default: [],
@@ -106,6 +111,14 @@ export default {
   },
 
   watch: {
+    disabled(isDisabled) {
+      if (this.choicesInstance) {
+        isDisabled
+          ? this.choicesInstance.disable()
+          : this.choicesInstance.enable();
+      }
+    },
+
     model(updatedValue, oldValue) {
       if (this.choicesInstance) {
         if (JSON.stringify(updatedValue) == JSON.stringify(oldValue)) {

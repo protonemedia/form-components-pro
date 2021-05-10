@@ -6,6 +6,7 @@
       <select
         :name="name"
         :multiple="multiple"
+        :disabled="disabled"
         v-bind="$attrs"
         v-on="listenersWithoutInput"
         v-model="model"
