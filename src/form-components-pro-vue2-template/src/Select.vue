@@ -5,6 +5,7 @@
 
       <select
         :name="name"
+        :disabled="disabled"
         :multiple="multiple"
         v-bind="$attrs"
         v-on="listenersWithoutInput"
