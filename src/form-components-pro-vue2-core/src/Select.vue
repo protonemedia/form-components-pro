@@ -49,7 +49,7 @@ export default {
 
       defaultChoicesOptions: {
         itemSelectText: "",
-        removeItemButton: true,
+        removeItemButton: this.multiple || this.placeholder ? true : false,
         shouldSort: false,
         searchPlaceholderValue: "Search...",
       },
