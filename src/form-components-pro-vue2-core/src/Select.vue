@@ -3,6 +3,7 @@ import find from "lodash-es/find";
 import get from "lodash-es/get";
 import forEach from "lodash-es/forEach";
 import isObject from "lodash-es/isObject";
+import isString from "lodash-es/isString";
 import Element from "./Element.vue";
 
 export default {
@@ -28,6 +29,12 @@ export default {
     options: {
       type: [Array, Object],
       default: [],
+      required: false,
+    },
+
+    placeholder: {
+      type: [Boolean, String],
+      default: true,
       required: false,
     },
 
@@ -93,7 +100,11 @@ export default {
     mappedOptions() {
       let options = this.arrayOptions;
 
-      if (this.optionsContainPlaceholder || this.multiple) {
+      if (
+        this.optionsContainPlaceholder ||
+        this.multiple ||
+        !this.placeholder
+      ) {
         return options;
       }
 
@@ -102,7 +113,11 @@ export default {
       return [
         {
           value: "",
-          label: vm.label ? vm.label : "Choose...",
+          label: isString(vm.placeholder)
+            ? vm.placeholder
+            : vm.label
+            ? vm.label
+            : "Choose...",
           placeholder: "placeholder",
         },
         ...options,
@@ -240,7 +255,7 @@ export default {
           vm.choicesInstance._highlightChoice(itemElement);
         });
 
-        if (!vm.multiple && options.removeItemButton) {
+        if (!vm.multiple && options.removeItemButton && vm.placeholder) {
           vm.unselectSelectedItemWhenDifferentThanModel();
         }
       });
