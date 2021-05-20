@@ -144,6 +144,10 @@ export default {
           this.choicesInstance.removeActiveItems();
         }
 
+        if (updatedValue === null) {
+          updatedValue = "";
+        }
+
         this.choicesInstance.setChoiceByValue(updatedValue);
       }
     },
