@@ -22,7 +22,8 @@
     "tsc-declaration": "tsc --noEmit false --outDir dist --declaration true --emitDeclarationOnly",
     "watch": "npm run build:dev -- --watch",
     "analyze": "yarn build --analyze",
-    "run-link": "yarn link"
+    "run-link": "yarn link",
+    "test": "jest"
   },
   "peerDependencies": {
     "vue": "^3.2"
