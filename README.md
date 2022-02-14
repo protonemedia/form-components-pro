@@ -1,12 +1,12 @@
 # Form Components Pro
 
-A set of Vue components to rapidly build forms with Tailwind CSS v2.0. It supports validation, model binding, includes default vendor styling and is fully customizable!
+A set of Vue 3 components to rapidly build forms with Tailwind CSS 3. It supports validation, model binding, includes default vendor styling and is fully customizable!
 
 ## Features
 
 * Components for input, textarea, file, multi-file, select, multi-select, checkbox and radio elements.
-* Support for Tailwind v2 with [Tailwind Forms](https://tailwindcss-forms.vercel.app/).
-* Support for Vue 2.6.
+* Support for Tailwind 3 with [Tailwind Forms](https://tailwindcss-forms.vercel.app/).
+* Support for Vue 3.
 * Support for the [Inertia.js Form Helper](https://inertiajs.com/forms#form-helper).
 * Component scripts independent from templates. All templates use the same logic.
 * Bind a target to a form (or a set of elements) to provide default values (model binding).
