@@ -1,0 +1,49 @@
+{
+  "name": "@protonemedia/form-components-pro-vue3-tailwind3-simple",
+  "version": "2.0.0-beta1",
+  "description": "",
+  "main": "dist/library.js",
+  "module": "dist/library.mjs",
+  "files": [
+    "dist/*"
+  ],
+  "author": "Pascal Baljet <pascal@protone.media>",
+  "homepage": "https://github.com/protonemedia/form-components-pro",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/protonemedia/form-components-pro.git",
+    "directory": "src/form-components-pro-vue2-tailwind2-simple"
+  },
+  "scripts": {
+    "build": "yarn tsc-declaration && NODE_ENV=production rollup -c --environment BUILD:production",
+    "build:dev": "yarn tsc-declaration && NODE_ENV=development rollup -c --environment BUILD:development",
+    "tsc-declaration": "tsc --noEmit false --outDir dist --declaration true --emitDeclarationOnly",
+    "watch": "npm run build:dev -- --watch",
+    "analyze": "yarn build --analyze",
+    "run-link": "yarn link",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "vue": "^3.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@vue/compiler-sfc": "^3.2.31",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "@vue/vue3-jest": "^27.0.0-alpha.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "rollup": "^2.67.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-vue": "^6.0.0",
+    "ts-jest": "^27.0",
+    "vue": "^3.2.31"
+  },
+  "dependencies": {
+    "@protonemedia/form-components-pro-vue3-core": "^2.0.0-beta1",
+    "lodash-es": "^4.17.21"
+  }
+}
