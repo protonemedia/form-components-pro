@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { Submit } from "../../form-components-pro-vue3-core/src/index";
+import { Submit } from "@protonemedia/form-components-pro-vue3-core";
 
 export default Submit;
 </script>

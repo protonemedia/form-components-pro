@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { Radio } from "../../form-components-pro-vue3-core/src/index";
+import { Radio } from "@protonemedia/form-components-pro-vue3-core";
 import Error from "./Error.vue";
 
 export default {

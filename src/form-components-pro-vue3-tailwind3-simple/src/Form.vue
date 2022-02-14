@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Form } from "../../form-components-pro-vue3-core/src/index";
+import { Form } from "@protonemedia/form-components-pro-vue3-core";
 
 export default Form;
 </script>

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { File } from "../../form-components-pro-vue3-core/src/index";
+import { File } from "@protonemedia/form-components-pro-vue3-core";
 import Error from "./Error.vue";
 import Label from "./Label.vue";
 

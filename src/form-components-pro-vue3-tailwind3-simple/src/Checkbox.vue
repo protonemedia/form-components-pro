@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Checkbox } from "../../form-components-pro-vue3-core/src/index";
+import { Checkbox } from "@protonemedia/form-components-pro-vue3-core";
 import Error from "./Error.vue";
 
 export default {

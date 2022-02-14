@@ -40,7 +40,7 @@
 import {
   Select,
   SelectChild,
-} from "../../form-components-pro-vue3-core/src/index";
+} from "@protonemedia/form-components-pro-vue3-core";
 import Label from "./Label.vue";
 import Error from "./Error.vue";
 
