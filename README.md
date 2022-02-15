@@ -522,11 +522,11 @@ Add the `autosize` attribute to the `Textarea` component:
 
 Flatpickr uses a *Stylus* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Flatpickr) and adds some Tailwind-specific tweaks. Make sure your bundler handles Stylus stylesheets correctly, for example, by installing `stylus` and `stylus-loader`.
 
- You can import the stylesheet in your Vue component:
+You can import the stylesheet in your app or Vue component:
 
- ```js
- import "@protonemedia/form-components-pro-vue2-tailwind2-unstyled/src/flatpickr.styl"
- ```
+```js
+import "@protonemedia/form-components-pro-vue3-tailwind3-simple/src/flatpickr.styl"
+```
 
 To enable the Date Picker, add the `date` attribute to the `Input` component:
 
@@ -554,12 +554,31 @@ You can instantiate Flatpickr with a [custom set of options](https://flatpickr.j
 
 ### Choices.js
 
-Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Choices.js) and adds some Tailwind-specific tweaks. Make sure your bundler handles SCSS stylesheets correctly, for example, by installing `sass` and `sass-loader`.
+Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Choices.js) and adds some Tailwind-specific tweaks. Make sure your bundler handles SCSS stylesheets correctly, for example, by installing `sass` and `sass-loader`. If you're using [Laravel Mix](https://laravel.com/docs/9.x/mix), you may include the stylesheet after the Tailwind directives:
 
-You can import the stylesheet in your Vue component:
+```scss
+// app.scss
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import "@protonemedia/form-components-pro-vue3-tailwind3-simple/src/choices.scss";
+```
 
 ```js
-import "@protonemedia/form-components-pro-vue3-tailwind3-simple/src/choices.scss"
+// webpack.mix.js
+
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .sass('resources/css/app.scss', 'public/css')
+    .options({
+        postCss: [
+            require('postcss-import'),
+            require('tailwindcss'),
+        ]
+    })
+    .webpackConfig(require('./webpack.config'));
 ```
 
 Add the `choices` attribute to the `Select` component:
