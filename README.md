@@ -33,7 +33,8 @@ We proudly support the community by developing libraries and packages and giving
   + [Specify an error per element](#specify-an-error-per-element)
   + [Errors per form](#errors-per-form)
   + [Hiding errors](#hiding-errors)
-* [Select elements](#select-elements)
+* [Select element](#select-element)
+* [File element](#file-element)
 * [Integrations with third-party Libaries](#integrations-with-third-party-libaries)
   + [Autosize](#autosize)
   + [Flatpickr](#flatpickr)
@@ -45,7 +46,7 @@ We proudly support the community by developing libraries and packages and giving
 
 ## Quick example
 
-In the example below you'll find [two-way binding on the Form Component](#use-v-model-on-the-form-component), [validation error evaluation](#errors-per-form), integration with [Autosize, Choices.js and Litepicker](#integrations-with-third-party-libaries), and the [Group component](#group-component).
+In the example below you'll find [two-way binding on the Form Component](#use-v-model-on-the-form-component), [validation error evaluation](#errors-per-form), integration with [Autosize, Choices.js and Flatpickr](#integrations-with-third-party-libaries), and the [Group component](#group-component).
 
 ```vue
 <template>
@@ -74,6 +75,8 @@ In the example below you'll find [two-way binding on the Form Component](#use-v-
 </template>
 
 <script setup>
+import { reactive } from "vue";
+
 const user = reactive({
     name: "Form Components Pro",
     biography: {
@@ -119,6 +122,18 @@ Make sure you've installed the [@tailwindcss/forms](https://github.com/tailwindl
 npm install @protonemedia/form-components-pro-vue3-tailwind3-simple
 ```
 
+## Tailwind configuration
+
+Add the repository path to the `content` array of your [Tailwind configuration file](https://tailwindcss.com/docs/installation). This ensures that the styling also works on production builds.
+
+```js
+module.exports = {
+  content: [
+    './node_modules/@protonemedia/**/*.{js,vue}',
+  ]
+}
+```
+
 ### Register components
 
 To start using the components, you need to [register](https://vuejs.org/guide/components/registration.html) the components. You can do this globally for your Vue.js app or per component.
@@ -131,6 +146,7 @@ By registering the Form Components globally, you can use them in the template of
 import {
   Checkbox,
   Form,
+  File,
   Group,
   Input,
   Radio,
@@ -154,6 +170,31 @@ app
   .component('Textarea', Textarea);
 ```
 
+#### Register in Inertia.js apps
+
+If you're using the `createInertiaApp` method to [boot your Inertia app](https://inertiajs.com/client-side-setup), you may register the components in the `setup` section.
+
+```js
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => require(`./Pages/${name}.vue`),
+    setup({ el, app, props, plugin }) {
+        return createApp({ render: () => h(app, props) })
+            .use(plugin)
+            .mixin({ methods: { route } })
+            .component('Checkbox', Checkbox)
+            .component('Form', Form)
+            .component('Group', Group)
+            .component('Input', Input)
+            .component('Radio', Radio)
+            .component('Select', Select)
+            .component('Submit', Submit)
+            .component('Textarea', Textarea)
+            .mount(el);
+    },
+});
+```
+
 #### Register per component
 
 Instead of registering the components globally, you can also choose to define them in the `components` object of a Vue component.
@@ -171,6 +212,7 @@ Instead of registering the components globally, you can also choose to define th
 import {
   Checkbox,
   Form,
+  File,
   Group,
   Input,
   Radio,
@@ -183,6 +225,7 @@ export default {
   components: {
     Checkbox,
     Form,
+    File,
     Group,
     Input,
     Radio,
@@ -227,6 +270,8 @@ You can set the `v-model` on each individual form element. The `label` attribute
 </template>
 
 <script setup>
+import { reactive } from "vue";
+
 const user = reactive({
     name: "",
     biography: "",
@@ -284,6 +329,8 @@ You can also pass an object to the form by using `v-model` on the `Form` compone
 </template>
 
 <script setup>
+import { reactive } from "vue";
+
 const user = reactive({
     name: "",
     biography: {
@@ -357,7 +404,7 @@ Suppose you want to hide a validation error. In that case, you can use the `show
 </Form>
 ```
 
-## Select elements
+## Select element
 
 You can give the `Select` component a set of options that is either an Array or an Object. If you go with an Object, it should be a simple *key-value* collection. An Array should consists of one or more objects that have a `value` and `label` key.
 
@@ -426,13 +473,42 @@ Instead of giving a set of options, you can also pass a custom slot into the `Se
 </Select>
 ```
 
+## File element
+
+There's a dedicated Vue component that you can use to select files. This component is based mainly on the `Input` component, but provides additional logic to display the filename of the selected file.
+
+```vue
+<File name="avatar" />
+```
+
+The component supports selecting multiple files as well by adding the `multiple` attribute.
+
+```vue
+<File name="documents" multiple />
+```
+
 ## Inertia.js Form Helper
 
+You can pass an instance of the [Inertia.js Form Helper](https://inertiajs.com/forms#form-helper) to the form using `v-model` on the `Form` component. This will bind the values, as well as the validation errors. You don't have to explicitly set the `:errors` attribute, as described [in the validation documentation](#validation).
 
+```vue
+<template>
+  <Form v-model="form">
+    <Input name="name" label="Your name" />
+    <Submit />
+  </Form>
+</template>
+
+<script setup>
+import { useForm } from "@inertiajs/inertia-vue3";
+
+const form = useForm({
+  name: ""
+})
+</script>
+```
 
 ## Integrations with third-party Libaries
-
-Currently, all three libraries are included in the bundle *by default*. This will be fixed before the first public release.
 
 ### Autosize
 
@@ -443,6 +519,14 @@ Add the `autosize` attribute to the `Textarea` component:
 ```
 
 ### Flatpickr
+
+Flatpickr uses a *Stylus* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Flatpickr) and adds some Tailwind-specific tweaks. Make sure your bundler handles Stylus stylesheets correctly, for example, by installing `stylus` and `stylus-loader`.
+
+ You can import the stylesheet in your Vue component:
+
+ ```js
+ import "@protonemedia/form-components-pro-vue2-tailwind2-unstyled/src/flatpickr.styl"
+ ```
 
 To enable the Date Picker, add the `date` attribute to the `Input` component:
 
@@ -564,8 +648,7 @@ Rendered template:
 - [ ] Support for file input (with Filepond integration?)
 - [ ] Support for markdown and WYSIWYG editors
 - [x] Support custom Choices.js configuration
-- [x] Support custom Litepicker configuration
-- [ ] Better default styling for the Litepicker library
+- [x] Support custom Flatpickr configuration
 - [x] Documentation about customization
 - [ ] Improve unit tests (too much copypasta)
 - [x] Setup GitHub Actions
