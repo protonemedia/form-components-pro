@@ -12,12 +12,35 @@ A set of Vue 3 components to rapidly build forms with Tailwind CSS 3. It support
 * Bind a target to a form (or a set of elements) to provide default values (model binding).
 * Validation errors.
 * Support for [autosize](https://github.com/jackmoore/autosize)
-* Support for [Choices.js](https://github.com/jshjohnson/Choices)
+* Support for [Choices.js](https://github.com/Choices-js/Choices)
 * Support for [Flatpickr](https://flatpickr.js.org)
 
 ## Support
 
 We proudly support the community by developing libraries and packages and giving them away for free. Keeping track of issues and pull requests takes time, but we're happy to help! If this package saves you time or if you're relying on it professionally, please consider [supporting the maintenance and development](https://github.com/sponsors/pascalbaljet).
+
+- [Form Components Pro](#form-components-pro)
+  * [Quick example](#quick-example)
+  * [Installation](#installation)
+    + [Register components](#register-components)
+      - [Register globally](#register-globally)
+      - [Register per component](#register-per-component)
+  * [Reactivity](#reactivity)
+    + [Use v-model on individual form elements](#use-v-model-on-individual-form-elements)
+    + [Use v-model on the Form component](#use-v-model-on-the-form-component)
+  * [Validation errors](#validation-errors)
+    + [Specify an error per element](#specify-an-error-per-element)
+    + [Errors per form](#errors-per-form)
+    + [Hiding errors](#hiding-errors)
+  * [Select elements](#select-elements)
+  * [Integrations with third-party Libaries](#integrations-with-third-party-libaries)
+    + [Autosize](#autosize)
+    + [Flatpickr](#flatpickr)
+    + [Choices.js](#choicesjs)
+  * [Misc](#misc)
+    + [Submit button](#submit-button)
+    + [Group component](#group-component)
+    + [Attribute inheritance](#attribute-inheritance)
 
 ## Quick example
 
@@ -113,7 +136,7 @@ import {
   Select,
   Submit,
   Textarea,
-} from "@protonemedia/form-components-pro-vue2-tailwind2-unstyled";
+} from "@protonemedia/form-components-pro-vue3-tailwind3-simple";
 
 import { createApp } from 'vue'
 
@@ -153,7 +176,7 @@ import {
   Select,
   Submit,
   Textarea,
-} from "@protonemedia/form-components-pro-vue2-tailwind2-unstyled";
+} from "@protonemedia/form-components-pro-vue3-tailwind3-simple";
 
 export default {
   components: {
@@ -416,13 +439,25 @@ Add the `autosize` attribute to the `Textarea` component:
 
 ### Flatpickr
 
-Add the `date` attribute to the `Input` component:
+To enable the Date Picker, add the `date` attribute to the `Input` component:
 
 ```vue
 <Input name="published_at" date />
 ```
 
-You can instantiate Flatpickr with a [custom set of options](https://flatpickr.js.org/options/) by passing an object to the `date` attribute:
+To enable to Time Picker, add the `time` attribute to the `Input` component:
+
+```vue
+<Input name="scheduled_at" time />
+```
+
+If you want a Date + Time Picker, add both attributes:
+
+```vue
+<Input name="scheduled_at" date time />
+```
+
+You can instantiate Flatpickr with a [custom set of options](https://flatpickr.js.org/options/) by passing an object to either the `date` or `time` attribute:
 
 ```vue
 <Input name="published_at" :date="{ dateFormat: 'YYYY' }" />
@@ -435,7 +470,7 @@ Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends
 You can import the stylesheet in your Vue component:
 
 ```js
-import "@protonemedia/form-components-pro-vue2-tailwind2-unstyled/src/choices.scss"
+import "@protonemedia/form-components-pro-vue3-tailwind3-simple/src/choices.scss"
 ```
 
 Add the `choices` attribute to the `Select` component:
@@ -450,7 +485,7 @@ This works for selecting multiple values as well:
 <Select name="favorite_framework" :options="frameworks" mulitple choices />
 ```
 
-You can instantiate Choices.js with a [custom set of options](https://github.com/jshjohnson/Choices#setup) by passing an object to the `choices` attribute:
+You can instantiate Choices.js with a [custom set of options](https://github.com/Choices-js/Choices#setup) by passing an object to the `choices` attribute:
 
 ```vue
 <Select name="favorite_framework" :options="frameworks" :choices="{ searchEnabled: false }" />
