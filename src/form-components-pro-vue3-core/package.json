@@ -18,7 +18,7 @@
     "build": "yarn tsc-declaration && NODE_ENV=production rollup -c --environment BUILD:production",
     "build:dev": "yarn tsc-declaration && NODE_ENV=development rollup -c --environment BUILD:development",
     "tsc-declaration": "tsc --noEmit false --outDir dist --declaration true --emitDeclarationOnly",
-    "watch": "npm run build:dev -- --watch",
+    "watch": "yarn run build:dev -- --watch",
     "analyze": "yarn build --analyze",
     "run-link": "yarn link",
     "test": "jest"

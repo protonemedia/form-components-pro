@@ -7,13 +7,13 @@
         "build-all-dev": "lerna run build:dev",
         "watch": "lerna run --parallel watch",
         "link-all": "lerna run run-link",
-        "setup": "npm install && lerna bootstrap && npm run link-all && npm run build-all",
-        "setup-dev": "npm install && lerna bootstrap && npm run link-all",
+        "setup": "yarn install && lerna bootstrap && yarn run link-all && yarn run build-all",
+        "setup-dev": "yarn install && lerna bootstrap && yarn run link-all",
         "test": "lerna run test",
         "prepublishOnly": "lerna run build-all",
         "publish-all": "lerna publish",
         "clean": "find ./src -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find ./src -name 'dist' -type d -prune -exec rm -rf '{}' +",
-        "publish-github": "npm run clean && npm run setup && npm run prepublishOnly && npm run publish-all"
+        "publish-github": "yarn run clean && yarn run setup && yarn run prepublishOnly && yarn run publish-all"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
