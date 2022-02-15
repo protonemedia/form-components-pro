@@ -21,7 +21,7 @@ We proudly support the community by developing libraries and packages and giving
 
 ## Quick example
 
-In the example below you'll find [two-way binding on the Form Component](/guide/reactivity.html#use-v-model-on-the-form-component), [validation error evaluation](/guide/validation.html#errors-per-form), integration with [Autosize, Choices.js and Litepicker](/guide/integration.html), and the [Group component](/guide/misc.html#group-component).
+In the example below you'll find [two-way binding on the Form Component](#use-v-model-on-the-form-component), [validation error evaluation](#errors-per-form), integration with [Autosize, Choices.js and Litepicker](#integrations-with-third-party-libaries), and the [Group component](#group-component).
 
 ```vue
 <template>
@@ -91,7 +91,7 @@ export default {
 </script>
 ```
 
-<img src="https://github.com/protonemedia/form-components-pro/blob/main/form_example.png?raw=true" />
+<img src="https://github.com/protonemedia/form-components-pro/blob/main/form_example.png?raw=true" width="424" />
 
 ## Installation
 
@@ -554,6 +554,23 @@ Rendered template:
   <input v-model="..." placeholder="Your name" data-foo="bar" />
 </div>
 ```
+
+## Roadmap to first release
+
+- [ ] Add `unstyled`, `underline` and `solid` styling examples from [@tailwindcss/forms examples](https://tailwindcss-forms.vercel.app)
+- [ ] Better imports for the external libraries
+- [x] Support for `optgroup` in the `Select` component
+- [ ] Support for date ranges (Flatpickr)
+- [x] Support for custom date formats (Flatpickr)
+- [x] Support for time input (Flatpickr)
+- [ ] Support for file input (with Filepond integration?)
+- [ ] Support for markdown and WYSIWYG editors
+- [x] Support custom Choices.js configuration
+- [x] Support custom Litepicker configuration
+- [ ] Better default styling for the Litepicker library
+- [x] Documentation about customization
+- [ ] Improve unit tests (too much copypasta)
+- [x] Setup GitHub Actions
 
 ## Changelog
 
