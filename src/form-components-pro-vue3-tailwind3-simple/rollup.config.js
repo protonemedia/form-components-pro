@@ -1,5 +1,7 @@
 import vue from 'rollup-plugin-vue'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default [
     {
@@ -10,12 +12,15 @@ export default [
                 file: 'dist/library.mjs'
             },
             {
-                format: 'cjs',
+                format: 'es',
                 file: 'dist/library.js'
             }
         ],
         plugins: [
-            vue(), peerDepsExternal()
+            commonjs({ include: /node_modules/ }),
+            vue(),
+            babel({ babelHelpers: 'runtime', configFile: '../../babel.config.js' }),
+            peerDepsExternal()
         ]
     }
 ]
