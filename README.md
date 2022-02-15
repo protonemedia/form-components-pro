@@ -134,7 +134,7 @@ app
 
 Instead of registering the components globally, you can also choose to define them in the `components` object of a Vue component.
 
-```js
+```vue
 <template>
   <div id="user_settings">
     <Form class="p-8">
@@ -178,7 +178,7 @@ One of the great features of Vue is [two-way data bindings](https://vuejs.org/gu
 
 You can set the `v-model` on each individual form element. The `label` attribute is optional.
 
-```js
+```vue
 <template>
   <div id="app">
     <Form class="p-8">
@@ -232,7 +232,7 @@ const interests = [
 
 You can also pass an object to the form by using `v-model` on the `Form` component. The binding of the Form Components is now based on the `name` attribute. Nested properties using the dot-notation are supported as well (`biography` example). The package can [evaluate validation errors](#errors-per-form) by the `name` attribute as well. This is great as the `name` attribute is used for both, so you don't have to define the `v-model` and `error` attributes manually.
 
-```js
+```vue
 <template>
   <div id="app">
     <Form class="p-8" v-model="user">
