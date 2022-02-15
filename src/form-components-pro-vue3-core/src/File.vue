@@ -1,7 +1,6 @@
 <script>
+import { map, first } from "lodash-es";
 import Input from "./Input.vue";
-import map from "lodash-es/map";
-import first from "lodash-es/first";
 
 export default {
   props: {

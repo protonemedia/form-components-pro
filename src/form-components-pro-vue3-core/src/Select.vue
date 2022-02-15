@@ -1,9 +1,5 @@
 <script>
-import find from "lodash-es/find";
-import get from "lodash-es/get";
-import forEach from "lodash-es/forEach";
-import isObject from "lodash-es/isObject";
-import isString from "lodash-es/isString";
+import { find, get, forEach, isObject, isString } from "lodash-es";
 import Element from "./Element.vue";
 
 export default {

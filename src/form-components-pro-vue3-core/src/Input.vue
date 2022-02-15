@@ -1,6 +1,5 @@
 <script>
-import get from "lodash-es/get";
-import isObject from "lodash-es/isObject";
+import { get, isObject } from "lodash-es";
 import Element from "./Element.vue";
 
 export default {

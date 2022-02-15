@@ -1,5 +1,5 @@
 <script>
-import set from "lodash-es/set";
+import { set } from "lodash-es";
 import { emit } from "vue";
 
 export default {

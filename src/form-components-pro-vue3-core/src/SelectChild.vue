@@ -1,14 +1,3 @@
-<template>
-  <optgroup v-if="option.options" :label="option.label">
-    <SelectChild
-      v-for="(childOption, childKey) in option.options"
-      :option="childOption"
-      :key="childKey"
-    />
-  </optgroup>
-  <option v-else v-bind="bindWithoutLabel">{{ option.label }}</option>
-</template>
-
 <script>
 export default {
   name: "SelectChild",
@@ -31,3 +20,14 @@ export default {
   },
 };
 </script>
+
+<template>
+  <optgroup v-if="option.options" :label="option.label">
+    <SelectChild
+      v-for="(childOption, childKey) in option.options"
+      :option="childOption"
+      :key="childKey"
+    />
+  </optgroup>
+  <option v-else v-bind="bindWithoutLabel">{{ option.label }}</option>
+</template>

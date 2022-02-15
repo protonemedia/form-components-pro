@@ -1,5 +1,5 @@
 <script>
-import get from "lodash-es/get";
+import { get } from "lodash-es";
 
 export default {
   props: {
