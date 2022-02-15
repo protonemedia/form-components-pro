@@ -5,6 +5,8 @@
   "main": "dist/library.js",
   "module": "dist/library.mjs",
   "files": [
+    "src/*.scss",
+    "src/*.styl",
     "dist/*"
   ],
   "author": "Pascal Baljet <pascal@protone.media>",
