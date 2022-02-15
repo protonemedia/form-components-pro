@@ -49,45 +49,39 @@ In the example below you'll find [two-way binding on the Form Component](#use-v-
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      user: {
-        name: "Form Components Pro",
-        biography: {
-          en: "",
-          nl: "",
-        },
-        date_of_birth: "",
-        favorite_framework: "tailwind",
-        interests: ["tailwind", "inertiajs", "laravel"],
-        theme: "dark",
-        newsletter: true,
-      },
+<script setup>
+const user = reactive({
+    name: "Form Components Pro",
+    biography: {
+        en: "",
+        nl: "",
+    },
+    date_of_birth: "",
+    favorite_framework: "tailwind",
+    interests: ["tailwind", "inertiajs", "laravel"],
+    theme: "dark",
+    newsletter: true,
+});
 
-      frameworks: {
-        tailwind: "Tailwind CSS",
-        bootstrap: "Bootstrap",
-      },
-
-      interests: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap" },
-        { value: "inertiajs", label: "Inertia.js" },
-        { value: "livewire", label: "Livewire" },
-        { value: "laravel", label: "Laravel" },
-      ],
-
-      errors: {
-        biography: {
-          en: "Tell me!",
-        },
-        date_of_birth: "Hey, this is required!",
-      },
-    };
-  },
+const frameworks = {
+    tailwind: "Tailwind CSS",
+    bootstrap: "Bootstrap",
 };
+
+const interests = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap" },
+    { value: "inertiajs", label: "Inertia.js" },
+    { value: "livewire", label: "Livewire" },
+    { value: "laravel", label: "Laravel" },
+];
+
+const errors = reactive({
+    biography: {
+        en: "Tell me!",
+    },
+    date_of_birth: "Hey, this is required!",
+});
 </script>
 ```
 
@@ -208,35 +202,29 @@ You can set the `v-model` on each individual form element. The `label` attribute
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      user: {
-        name: "",
-        biography: "",
-        date_of_birth: "",
-        favorite_framework: "",
-        interests: [],
-        theme: "light",
-        newsletter: false,
-      },
+<script setup>
+const user = reactive({
+    name: "",
+    biography: "",
+    date_of_birth: "",
+    favorite_framework: "",
+    interests: [],
+    theme: "light",
+    newsletter: false,
+});
 
-      frameworks: {
-        tailwind: "Tailwind CSS",
-        bootstrap: "Bootstrap",
-      },
-
-      interests: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap" },
-        { value: "inertiajs", label: "Inertia.js" },
-        { value: "livewire", label: "Livewire" },
-        { value: "laravel", label: "Laravel" },
-      ],
-    };
-  },
+const frameworks = {
+    tailwind: "Tailwind CSS",
+    bootstrap: "Bootstrap",
 };
+
+const interests = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap" },
+    { value: "inertiajs", label: "Inertia.js" },
+    { value: "livewire", label: "Livewire" },
+    { value: "laravel", label: "Laravel" },
+];
 </script>
 ```
 
@@ -271,38 +259,32 @@ You can also pass an object to the form by using `v-model` on the `Form` compone
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      user: {
-        name: "",
-        biography: {
-          en: "",
-          nl: "",
-        },
-        date_of_birth: "",
-        favorite_framework: "",
-        interests: [],
-        theme: "light",
-        newsletter: false,
-      },
+<script setup>
+const user = reactive({
+    name: "",
+    biography: {
+        en: "",
+        nl: "",
+    },
+    date_of_birth: "",
+    favorite_framework: "",
+    interests: [],
+    theme: "light",
+    newsletter: false,
+});
 
-      frameworks: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap" },
-      ],
+const frameworks = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap" },
+],
 
-      interests: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap" },
-        { value: "inertiajs", label: "Inertia.js" },
-        { value: "livewire", label: "Livewire" },
-        { value: "laravel", label: "Laravel" },
-      ],
-    };
-  },
-};
+const interests = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap" },
+    { value: "inertiajs", label: "Inertia.js" },
+    { value: "livewire", label: "Livewire" },
+    { value: "laravel", label: "Laravel" },
+],
 </script>
 ```
 
@@ -358,16 +340,10 @@ You can give the `Select` component a set of options that is either an Array or 
 Object example:
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      selectOptions: {
-        tailwind: "Tailwind CSS",
-        bootstrap: "Bootstrap",
-      },
-    };
-  },
+<script setup>
+const selectOptions = {
+    tailwind: "Tailwind CSS",
+    bootstrap: "Bootstrap",
 };
 </script>
 ```
@@ -375,17 +351,11 @@ export default {
 Array example:
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      selectOptions: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap" },
-      ],
-    };
-  },
-};
+<script setup>
+const selectOptions = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap" },
+];
 </script>
 ```
 
@@ -393,45 +363,33 @@ By using an Array, you could supply additional attributes, like `disabled`:
 
 ```vue
 <script>
-export default {
-  data() {
-    return {
-      selectOptions: [
-        { value: "tailwind", label: "Tailwind CSS" },
-        { value: "bootstrap", label: "Bootstrap", disabled: true },
-      ],
-    };
-  },
-};
+const selectOptions = [
+    { value: "tailwind", label: "Tailwind CSS" },
+    { value: "bootstrap", label: "Bootstrap", disabled: true },
+];
 </script>
 ```
 
 There's support for grouping (`optgroup`) as well. Each group object should have a `label` key and an `options` key, which should be an Array:
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      frameworks: [
-        {
-          label: "CSS Frameworks",
-          options: [
+<script setup>
+const frameworks = [
+    {
+        label: "CSS Frameworks",
+        options: [
             { value: "tailwind", label: "Tailwind CSS" },
             { value: "bootstrap", label: "Bootstrap" },
-          ],
-        },
-        {
-          label: "PHP Frameworks",
-          options: [
+        ],
+    },
+    {
+        label: "PHP Frameworks",
+        options: [
             { value: "laravel", label: "Laravel" },
             { value: "symfony", label: "Symfony" },
-          ],
-        },
-      ],
-    };
-  },
-};
+        ],
+    },
+];
 </script>
 ```
 
