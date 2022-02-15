@@ -426,6 +426,10 @@ Instead of giving a set of options, you can also pass a custom slot into the `Se
 </Select>
 ```
 
+## Inertia.js Form Helper
+
+
+
 ## Integrations with third-party Libaries
 
 Currently, all three libraries are included in the bundle *by default*. This will be fixed before the first public release.
