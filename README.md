@@ -8,7 +8,7 @@ A set of Vue 3 components to rapidly build forms with Tailwind CSS 3. It support
 * Support for Tailwind 3 with [Tailwind Forms](https://tailwindcss-forms.vercel.app/).
 * Support for Vue 3.
 * Support for the [Inertia.js Form Helper](https://inertiajs.com/forms#form-helper).
-* Component scripts independent from templates. All templates use the same logic.
+* Component scripts independent from templates. Templates use the same logic.
 * Bind a target to a form (or a set of elements) to provide default values (model binding).
 * Validation errors.
 * Support for [autosize](https://github.com/jackmoore/autosize)
@@ -19,9 +19,541 @@ A set of Vue 3 components to rapidly build forms with Tailwind CSS 3. It support
 
 We proudly support the community by developing libraries and packages and giving them away for free. Keeping track of issues and pull requests takes time, but we're happy to help! If this package saves you time or if you're relying on it professionally, please consider [supporting the maintenance and development](https://github.com/sponsors/pascalbaljet).
 
-## Documentation
+## Quick example
 
-You can find the documentation at [docs.formcomponents.pro](https://docs.formcomponents.pro) and at [GitHub](https://github.com/protonemedia/form-components-pro-docs).
+In the example below you'll find [two-way binding on the Form Component](/guide/reactivity.html#use-v-model-on-the-form-component), [validation error evaluation](/guide/validation.html#errors-per-form), integration with [Autosize, Choices.js and Litepicker](/guide/integration.html), and the [Group component](/guide/misc.html#group-component).
+
+```vue
+<template>
+  <div id="app">
+    <Form class="p-8 max-w-md" v-model="user" :errors="errors">
+      <Input name="name" label="Your name" />
+
+      <Textarea name="biography.en" label="Write your story (English)" autosize />
+      <Textarea name="biography.nl" label="Write your story (Dutch)" autosize />
+      <Input name="date_of_birth" label="Date of birth" date />
+      <Select name="favorite_framework" :options="frameworks" label="Pick your favorite framework" choices />
+      <Select name="interests" :options="interests" label="Choose your interests" multiple choices />
+
+      <Group label="Prefered IDE theme" name="theme" inline>
+        <Radio name="theme" value="dark" label="Dark theme" />
+        <Radio name="theme" value="light" label="Light theme" />
+      </Group>
+
+      <Group>
+        <Checkbox name="newsletter" label="Do you want to receive my newsletter?" />
+      </Group>
+
+      <Submit />
+    </Form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: {
+        name: "Form Components Pro",
+        biography: {
+          en: "",
+          nl: "",
+        },
+        date_of_birth: "",
+        favorite_framework: "tailwind",
+        interests: ["tailwind", "inertiajs", "laravel"],
+        theme: "dark",
+        newsletter: true,
+      },
+
+      frameworks: {
+        tailwind: "Tailwind CSS",
+        bootstrap: "Bootstrap",
+      },
+
+      interests: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap" },
+        { value: "inertiajs", label: "Inertia.js" },
+        { value: "livewire", label: "Livewire" },
+        { value: "laravel", label: "Laravel" },
+      ],
+
+      errors: {
+        biography: {
+          en: "Tell me!",
+        },
+        date_of_birth: "Hey, this is required!",
+      },
+    };
+  },
+};
+</script>
+```
+
+<img src="https://github.com/protonemedia/form-components-pro/blob/main/form_example.png?raw=true" />
+
+## Installation
+
+Make sure you've installed the [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms) plugin correctly. You can install the package with `npm` or `yarn`:
+
+```bash
+npm install @protonemedia/form-components-pro-vue3-tailwind3-simple
+```
+
+### Register components
+
+To start using the components, you need to [register](https://vuejs.org/guide/components/registration.html) the components. You can do this globally for your Vue.js app or per component.
+
+#### Register globally
+
+By registering the Form Components globally, you can use them in the template of any root Vue instance (`new Vue`).
+
+```js
+import {
+  Checkbox,
+  Form,
+  Group,
+  Input,
+  Radio,
+  Select,
+  Submit,
+  Textarea,
+} from "@protonemedia/form-components-pro-vue2-tailwind2-unstyled";
+
+import { createApp } from 'vue'
+
+const app = createApp({})
+
+app
+  .component('Checkbox', Checkbox)
+  .component('Form', Form)
+  .component('Group', Group)
+  .component('Input', Input)
+  .component('Radio', Radio)
+  .component('Select', Select)
+  .component('Submit', Submit)
+  .component('Textarea', Textarea);
+```
+
+#### Register per component
+
+Instead of registering the components globally, you can also choose to define them in the `components` object of a Vue component.
+
+```js
+<template>
+  <div id="user_settings">
+    <Form class="p-8">
+
+    </Form>
+  </div>
+</template>
+
+<script>
+import {
+  Checkbox,
+  Form,
+  Group,
+  Input,
+  Radio,
+  Select,
+  Submit,
+  Textarea,
+} from "@protonemedia/form-components-pro-vue2-tailwind2-unstyled";
+
+export default {
+  components: {
+    Checkbox,
+    Form,
+    Group,
+    Input,
+    Radio,
+    Select,
+    Submit,
+    Textarea,
+  },
+};
+</script>
+```
+
+## Reactivity
+
+One of the great features of Vue is [two-way data bindings](https://vuejs.org/guide/essentials/forms.html) on form elements. This is fully supported on all Form Components and all integrations with third-party libraries.
+
+### Use v-model on individual form elements
+
+You can set the `v-model` on each individual form element. The `label` attribute is optional.
+
+```js
+<template>
+  <div id="app">
+    <Form class="p-8">
+      <Input v-model="user.name" label="Your name" />
+      <Textarea v-model="user.biography" label="Write your story" autosize />
+      <Input v-model="user.date_of_birth" label="Date of birth" date />
+      <Select v-model="user.favorite_framework" :options="frameworks" label="Pick your favorite framework"/>
+      <Select v-model="user.interests" :options="interests" label="Choose your interests" multiple />
+
+      <Group label="Prefered IDE theme" inline>
+        <Radio v-model="user.theme" value="dark" label="Dark theme" />
+        <Radio v-model="user.theme" value="light" label="Light theme" />
+      </Group>
+
+      <Group>
+        <Checkbox v-model="user.newsletter" label="Do you want to receive my newsletter?" />
+      </Group>
+
+      <Submit />
+    </Form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: {
+        name: "",
+        biography: "",
+        date_of_birth: "",
+        favorite_framework: "",
+        interests: [],
+        theme: "light",
+        newsletter: false,
+      },
+
+      frameworks: {
+        tailwind: "Tailwind CSS",
+        bootstrap: "Bootstrap",
+      },
+
+      interests: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap" },
+        { value: "inertiajs", label: "Inertia.js" },
+        { value: "livewire", label: "Livewire" },
+        { value: "laravel", label: "Laravel" },
+      ],
+    };
+  },
+};
+</script>
+```
+
+### Use v-model on the Form component
+
+You can also pass an object to the form by using `v-model` on the `Form` component. The binding of the Form Components is now based on the `name` attribute. Nested properties using the dot-notation are supported as well (`biography` example). The package can [evaluate validation errors](#errors-per-form) by the `name` attribute as well. This is great as the `name` attribute is used for both, so you don't have to define the `v-model` and `error` attributes manually.
+
+```js
+<template>
+  <div id="app">
+    <Form class="p-8" v-model="user">
+      <Input name="name" label="Your name" />
+
+      <Textarea name="biography.en" label="Write your story (English)" autosize />
+      <Textarea name="biography.nl" label="Write your story (Dutch)" autosize />
+
+      <Input name="date_of_birth" label="Date of birth" date />
+      <Select name="favorite_framework" :options="frameworks" label="Pick your favorite framework" />
+      <Select name="interests" :options="interests" label="Choose your interests" multiple />
+
+      <Group label="Prefered IDE theme" inline>
+        <Radio name="theme" value="dark" label="Dark theme" />
+        <Radio name="theme" value="light" label="Light theme" />
+      </Group>
+
+      <Group>
+        <Checkbox name="newsletter" label="Do you want to receive my newsletter?" />
+      </Group>
+
+      <Submit />
+    </Form>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      user: {
+        name: "",
+        biography: {
+          en: "",
+          nl: "",
+        },
+        date_of_birth: "",
+        favorite_framework: "",
+        interests: [],
+        theme: "light",
+        newsletter: false,
+      },
+
+      frameworks: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap" },
+      ],
+
+      interests: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap" },
+        { value: "inertiajs", label: "Inertia.js" },
+        { value: "livewire", label: "Livewire" },
+        { value: "laravel", label: "Laravel" },
+      ],
+    };
+  },
+};
+</script>
+```
+
+## Validation errors
+
+### Specify an error per element
+
+With the `error` attribute, you can pass a validation error to any form element. This also works for the `Group` component.
+
+```vue
+<Form>
+  <Input v-model="user.name" :error="errors.name" />
+
+  <Group label="Prefered IDE theme" inline :error="errors.theme">
+    <Radio v-model="user.theme" value="dark" label="Dark theme" />
+    <Radio v-model="user.theme" value="light" label="Light theme" />
+  </Group>
+
+  <Submit />
+</Form>
+```
+
+### Errors per form
+
+Just like passing an object to `v-model` on the `Form` component, you can give it an error object as well. Now each error will be evaluated by the `name` attribute.
+
+```vue
+<Form v-model="company" :errors="errors">
+  <Input name="business_name" />
+  <Input name="vat_number" />
+
+  <Submit />
+</Form>
+```
+
+### Hiding errors
+
+Suppose you want to hide a validation error. In that case, you can use the `show-error` attribute, which defaults to `true` (except on the [Radio component](#group-component)).
+
+```vue
+<Form v-model="company" :errors="errors">
+  <Input name="business_name" />
+  <Input name="vat_number" :show-error="false" />
+
+  <Submit />
+</Form>
+```
+
+## Select elements
+
+You can give the `Select` component a set of options that is either an Array or an Object. If you go with an Object, it should be a simple *key-value* collection. An Array should consists of one or more objects that have a `value` and `label` key.
+
+Object example:
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      selectOptions: {
+        tailwind: "Tailwind CSS",
+        bootstrap: "Bootstrap",
+      },
+    };
+  },
+};
+</script>
+```
+
+Array example:
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      selectOptions: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap" },
+      ],
+    };
+  },
+};
+</script>
+```
+
+By using an Array, you could supply additional attributes, like `disabled`:
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      selectOptions: [
+        { value: "tailwind", label: "Tailwind CSS" },
+        { value: "bootstrap", label: "Bootstrap", disabled: true },
+      ],
+    };
+  },
+};
+</script>
+```
+
+There's support for grouping (`optgroup`) as well. Each group object should have a `label` key and an `options` key, which should be an Array:
+
+```vue
+<script>
+export default {
+  data() {
+    return {
+      frameworks: [
+        {
+          label: "CSS Frameworks",
+          options: [
+            { value: "tailwind", label: "Tailwind CSS" },
+            { value: "bootstrap", label: "Bootstrap" },
+          ],
+        },
+        {
+          label: "PHP Frameworks",
+          options: [
+            { value: "laravel", label: "Laravel" },
+            { value: "symfony", label: "Symfony" },
+          ],
+        },
+      ],
+    };
+  },
+};
+</script>
+```
+
+Instead of giving a set of options, you can also pass a custom slot into the `Select` component:
+
+```vue
+<Select name="favorite_framework">
+  <option value="tailwind">Tailwind CSS</option>
+  <option value="bootstrap">Bootstrap</option>
+</Select>
+```
+
+## Integrations with third-party Libaries
+
+Currently, all three libraries are included in the bundle *by default*. This will be fixed before the first public release.
+
+### Autosize
+
+Add the `autosize` attribute to the `Textarea` component:
+
+```vue
+<Textarea name="biography" autosize />
+```
+
+### Flatpickr
+
+Add the `date` attribute to the `Input` component:
+
+```vue
+<Input name="published_at" date />
+```
+
+You can instantiate Flatpickr with a [custom set of options](https://flatpickr.js.org/options/) by passing an object to the `date` attribute:
+
+```vue
+<Input name="published_at" :date="{ dateFormat: 'YYYY' }" />
+```
+
+### Choices.js
+
+Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Choices.js) and adds some Tailwind-specific tweaks. Make sure your bundler handles SCSS stylesheets correctly.
+
+You can import the stylesheet in your Vue component:
+
+```js
+import "@protonemedia/form-components-pro-vue2-tailwind2-unstyled/src/choices.scss"
+```
+
+Add the `choices` attribute to the `Select` component:
+
+```vue
+<Select name="favorite_framework" :options="frameworks" choices />
+```
+
+This works for selecting multiple values as well:
+
+```vue
+<Select name="favorite_framework" :options="frameworks" mulitple choices />
+```
+
+You can instantiate Choices.js with a [custom set of options](https://github.com/jshjohnson/Choices#setup) by passing an object to the `choices` attribute:
+
+```vue
+<Select name="favorite_framework" :options="frameworks" :choices="{ searchEnabled: false }" />
+```
+
+## Misc
+
+### Submit button
+
+The submit button has a default text of `Submit`, but you can pass in a slot as well:
+
+```vue
+<Submit>Do something!</Submit>
+```
+
+### Group component
+
+With the `Group` component, you can group checkboxes and radio elements. You can use the `inline` attribute to arrange the children horizontally. Just like other the components, the `Group` component also supports the `error` and `label` attributes.
+
+Most of the time, you don't want to show validation errors on each radio element, so the validation errors are hidden by default on the `Radio` component. Instead, you can use the `Group` component to show the error just once.
+
+```vue
+<Form v-model="settings" :errors="errors">
+  <Group name="theme" inline>
+    <Radio name="theme" value="dark" label="Dark theme" />
+    <Radio name="theme" value="light" label="Light theme" />
+  </Group>
+
+  <Group>
+    <Checkbox name="newsletter" label="Do you want to receive my newsletter?" />
+    <Checkbox name="terms" label="Do you agree with the terms?" />
+  </Group>
+</Form>
+```
+
+If you want to show the error on the `Radio` component, you can use the `show-error` attribute:
+
+```vue
+<Form v-model="settings" :errors="errors">
+  <Group>
+    <Radio name="theme" value="dark" label="Dark theme" :show-error="true" />
+    <Radio name="theme" value="light" label="Light theme" :show-error="true" />
+  </Group>
+</Form>
+```
+
+### Attribute inheritance
+
+Additional attributes are passed down the form element itself. For example, the `placeholder` attribute is passed down to the inner input element, not to the `Input` component's outer `div`.
+
+```vue
+<Input v-model="user.name" placeholder="Your name" data-foo="bar" />
+```
+
+Rendered template:
+
+```html
+<div>
+  <input v-model="..." placeholder="Your name" data-foo="bar" />
+</div>
+```
 
 ## Changelog
 
