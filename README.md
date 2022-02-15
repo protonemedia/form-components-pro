@@ -23,8 +23,10 @@ We proudly support the community by developing libraries and packages and giving
 
 * [Quick example](#quick-example)
 * [Installation](#installation)
+  + [Tailwind configuration](#tailwind-configuration)
   + [Register components](#register-components)
     - [Register globally](#register-globally)
+    - [Register in Inertia.js apps](#register-in-inertiajs-apps)
     - [Register per component](#register-per-component)
 * [Reactivity](#reactivity)
   + [Use v-model on individual form elements](#use-v-model-on-individual-form-elements)
@@ -35,6 +37,7 @@ We proudly support the community by developing libraries and packages and giving
   + [Hiding errors](#hiding-errors)
 * [Select element](#select-element)
 * [File element](#file-element)
+* [Inertia.js Form Helper](#inertiajs-form-helper)
 * [Integrations with third-party Libaries](#integrations-with-third-party-libaries)
   + [Autosize](#autosize)
   + [Flatpickr](#flatpickr)
@@ -60,7 +63,7 @@ In the example below you'll find [two-way binding on the Form Component](#use-v-
       <Select name="favorite_framework" :options="frameworks" label="Pick your favorite framework" choices />
       <Select name="interests" :options="interests" label="Choose your interests" multiple choices />
 
-      <Group label="Prefered IDE theme" name="theme" inline>
+      <Group label="Preferred IDE theme" name="theme" inline>
         <Radio name="theme" value="dark" label="Dark theme" />
         <Radio name="theme" value="light" label="Light theme" />
       </Group>
@@ -122,7 +125,7 @@ Make sure you've installed the [@tailwindcss/forms](https://github.com/tailwindl
 npm install @protonemedia/form-components-pro-vue3-tailwind3-simple
 ```
 
-## Tailwind configuration
+### Tailwind configuration
 
 Add the repository path to the `content` array of your [Tailwind configuration file](https://tailwindcss.com/docs/installation). This ensures that the styling also works on production builds.
 
@@ -257,7 +260,7 @@ You can set the `v-model` on each individual form element. The `label` attribute
       <Select v-model="user.favorite_framework" :options="frameworks" label="Pick your favorite framework"/>
       <Select v-model="user.interests" :options="interests" label="Choose your interests" multiple />
 
-      <Group label="Prefered IDE theme" inline>
+      <Group label="Preferred IDE theme" inline>
         <Radio v-model="user.theme" value="dark" label="Dark theme" />
         <Radio v-model="user.theme" value="light" label="Light theme" />
       </Group>
@@ -316,7 +319,7 @@ You can also pass an object to the form by using `v-model` on the `Form` compone
       <Select name="favorite_framework" :options="frameworks" label="Pick your favorite framework" />
       <Select name="interests" :options="interests" label="Choose your interests" multiple />
 
-      <Group label="Prefered IDE theme" inline>
+      <Group label="Preferred IDE theme" inline>
         <Radio name="theme" value="dark" label="Dark theme" />
         <Radio name="theme" value="light" label="Light theme" />
       </Group>
@@ -371,7 +374,7 @@ With the `error` attribute, you can pass a validation error to any form element.
 <Form>
   <Input v-model="user.name" :error="errors.name" />
 
-  <Group label="Prefered IDE theme" inline :error="errors.theme">
+  <Group label="Preferred IDE theme" inline :error="errors.theme">
     <Radio v-model="user.theme" value="dark" label="Dark theme" />
     <Radio v-model="user.theme" value="light" label="Light theme" />
   </Group>
