@@ -554,7 +554,7 @@ You can instantiate Flatpickr with a [custom set of options](https://flatpickr.j
 
 ### Choices.js
 
-Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Choices.js) and adds some Tailwind-specific tweaks. Make sure your bundler handles SCSS stylesheets correctly.
+Choices.js uses a *SCSS* stylesheet to style the library. Our stylesheet extends the vendor stylesheet (of Choices.js) and adds some Tailwind-specific tweaks. Make sure your bundler handles SCSS stylesheets correctly, for example, by installing `sass` and `sass-loader`.
 
 You can import the stylesheet in your Vue component:
 
