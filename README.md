@@ -162,6 +162,7 @@ const app = createApp({})
 app
   .component('Checkbox', Checkbox)
   .component('Form', Form)
+  .component('File', File)
   .component('Group', Group)
   .component('Input', Input)
   .component('Radio', Radio)
@@ -184,6 +185,7 @@ createInertiaApp({
             .mixin({ methods: { route } })
             .component('Checkbox', Checkbox)
             .component('Form', Form)
+            .component('File', File)
             .component('Group', Group)
             .component('Input', Input)
             .component('Radio', Radio)
@@ -493,7 +495,7 @@ You can pass an instance of the [Inertia.js Form Helper](https://inertiajs.com/f
 
 ```vue
 <template>
-  <Form v-model="form">
+  <Form @submit.prevent="form.post('/users')" v-model="form">
     <Input name="name" label="Your name" />
     <Submit />
   </Form>
@@ -503,8 +505,8 @@ You can pass an instance of the [Inertia.js Form Helper](https://inertiajs.com/f
 import { useForm } from "@inertiajs/inertia-vue3";
 
 const form = useForm({
-  name: ""
-})
+  name: "",
+});
 </script>
 ```
 
@@ -693,7 +695,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 * [`Laravel Paddle`](https://github.com/protonemedia/laravel-paddle): Paddle.com API integration for Laravel with support for webhooks/events.
 * [`Laravel Verify New Email`](https://github.com/protonemedia/laravel-verify-new-email): This package adds support for verifying new email addresses: when a user updates its email address, it won't replace the old one until the new one is verified.
 * [`Laravel WebDAV`](https://github.com/protonemedia/laravel-webdav): WebDAV driver for Laravel's Filesystem.
-* [`Laravel XSS Protection Middlware`](https://github.com/protonemedia/laravel-xss-protection): Protect your app against Cross-site scripting (XSS). It sanitizes request input, and it can sanatize Blade echo statements as well.
+* [`Laravel XSS Protection Middleware`](https://github.com/protonemedia/laravel-xss-protection): Protect your app against Cross-site scripting (XSS). It sanitizes request input, and it can sanatize Blade echo statements as well.
 
 ## Security
 
