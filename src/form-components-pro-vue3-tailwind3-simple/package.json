@@ -1,6 +1,6 @@
 {
   "name": "@protonemedia/form-components-pro-vue3-tailwind3-simple",
-  "version": "2.0.11-beta1.0",
+  "version": "2.0.12-beta1.0",
   "description": "",
   "main": "dist/library.js",
   "module": "dist/library.mjs",
@@ -47,7 +47,7 @@
     "vue": "^3.2.31"
   },
   "dependencies": {
-    "@protonemedia/form-components-pro-vue3-core": "^2.0.11-beta1.0",
+    "@protonemedia/form-components-pro-vue3-core": "^2.0.12-beta1.0",
     "lodash-es": "^4.17.21"
   }
 }
