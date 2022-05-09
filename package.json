@@ -13,7 +13,7 @@
         "prepublishOnly": "lerna run build-all",
         "publish-all": "lerna publish",
         "clean": "find ./src -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find ./src -name 'dist' -type d -prune -exec rm -rf '{}' +",
-        "publish-github": "yarn run clean && yarn run setup && yarn run prepublishOnly && yarn run publish-all"
+        "publish-npm": "yarn run clean && yarn run setup && yarn run prepublishOnly && yarn run publish-all"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
