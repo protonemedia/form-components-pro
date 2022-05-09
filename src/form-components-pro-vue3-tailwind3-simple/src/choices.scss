@@ -6,11 +6,11 @@ span+.#{$choices-selector} {
     @apply mt-1;
 }
 
-fieldset:disabled .#{$choices-selector}__list {
+fieldset:disabled .#{$choices-selector} {
     @apply opacity-50;
 
-    .#{$choices-selector}__button {
-        @apply hidden;
+    .#{$choices-selector}__button:hover {
+        @apply opacity-25;
     }
 }
 
