@@ -608,10 +608,14 @@ You can instantiate Choices.js with a [custom set of options](https://github.com
 
 ### Submit button
 
-The submit button has a default text of `Submit`, but you can pass in a slot as well:
+The submit button has a default label of `Submit`, but you set a different label, or pass in a slot:
 
 ```vue
-<Submit>Do something!</Submit>
+<Submit label="Save profile" />
+
+<Submit>
+  <span class="bg-red-500 text-white">Do something!</span>
+</Submit>
 ```
 
 ### Group component

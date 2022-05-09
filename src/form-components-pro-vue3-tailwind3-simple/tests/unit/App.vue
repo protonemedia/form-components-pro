@@ -133,7 +133,7 @@
         multiple
       />
 
-      <Submit />
+      <Submit label="Click here!" />
     </div>
   </Form>
 </template>

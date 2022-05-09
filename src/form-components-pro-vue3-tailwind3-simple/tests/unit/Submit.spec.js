@@ -9,6 +9,13 @@ describe('Tailwind v3 Submit.vue', () => {
         expect(radio.text()).toBe("Submit");
     })
 
+    it('has a property to customize the label', async () => {
+        const wrapper = mount(Component)
+
+        const radio = wrapper.find('form#misc-form button[type="submit"]')
+        expect(radio.text()).toBe("Click here!");
+    })
+
     it('has a slot to customize the label', async () => {
         const wrapper = mount(Component)
 

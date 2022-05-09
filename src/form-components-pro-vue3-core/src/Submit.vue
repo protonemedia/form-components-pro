@@ -7,6 +7,12 @@ export default {
   mixins: [HasFormContext],
 
   props: {
+    label: {
+      type: String,
+      required: false,
+      default: "Submit",
+    },
+
     type: {
       type: String,
       required: false,

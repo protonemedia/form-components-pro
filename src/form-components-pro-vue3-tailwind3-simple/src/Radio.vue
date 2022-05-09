@@ -18,6 +18,7 @@
           focus:ring
           focus:ring-indigo-200
           focus:ring-opacity-50
+          disabled:opacity-75
         "
       />
 

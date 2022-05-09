@@ -27,7 +27,7 @@
             v-bind="$attrs"
             v-on="listenersWithFileChange"
             ref="input"
-            class="invisible absolute inset-0 w-full h-full"
+            class="invisible absolute inset-0 w-full h-full disabled:opacity-75"
           />
         </a>
 
