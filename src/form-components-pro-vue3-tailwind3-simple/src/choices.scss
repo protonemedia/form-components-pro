@@ -15,10 +15,12 @@ fieldset:disabled .#{$choices-selector} {
 }
 
 .#{$choices-selector} {
-    .#{$choices-selector}__inner {
-        @apply block rounded-md border-gray-300 shadow-sm w-full;
+    @apply shadow-sm;
 
-        padding-bottom: 1.25px;
+    .#{$choices-selector}__inner {
+        @apply block rounded-md border-gray-300 shadow-sm w-full py-2;
+
+        min-height: auto;
     }
 
     &.is-focused {
@@ -43,6 +45,10 @@ fieldset:disabled .#{$choices-selector} {
     }
 
     &[data-type*="select-one"] {
+        .#{$choices-selector}__inner {
+            @apply py-2;
+        }
+
         .#{$choices-selector}__input {
             @apply px-4 text-base;
 
@@ -64,6 +70,10 @@ fieldset:disabled .#{$choices-selector} {
         }
     }
 
+    .#{$choices-selector}__list {
+        @apply py-0;
+    }
+
     .#{$choices-selector}__list--dropdown {
         @apply mt-1 shadow-lg rounded-md border-gray-300;
 
@@ -77,18 +87,26 @@ fieldset:disabled .#{$choices-selector} {
     }
 
     .#{$choices-selector}__list--multiple {
+        @apply mb-0;
+
         .#{$choices-selector}__item {
-            @apply bg-blue-600 border-blue-600 rounded-md font-medium;
+            @apply bg-blue-600 border-blue-600 rounded-md font-medium py-1 text-sm mb-1;
+
+            line-height: 1;
         }
     }
 
     &[data-type*="select-multiple"] {
+        .#{$choices-selector}__inner {
+            @apply pr-8 py-2;
+        }
+
         .#{$choices-selector}__button {
             @apply border-none px-3 mx-0;
         }
 
         .#{$choices-selector}__input {
-            @apply ml-1 pl-0;
+            @apply m-0 ml-1 py-0 text-base;
 
             min-width: 2ch #{!important};
         }
