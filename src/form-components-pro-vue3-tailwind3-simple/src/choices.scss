@@ -99,6 +99,10 @@ fieldset:disabled .#{$choices-selector} {
     &[data-type*="select-multiple"] {
         .#{$choices-selector}__inner {
             @apply pr-8 py-2;
+
+            &[data-has-selection="true"]{
+                @apply pb-1;
+            }
         }
 
         .#{$choices-selector}__button {
