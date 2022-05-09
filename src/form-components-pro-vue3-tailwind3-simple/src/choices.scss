@@ -6,6 +6,14 @@ span+.#{$choices-selector} {
     @apply mt-1;
 }
 
+fieldset:disabled .#{$choices-selector}__list {
+    @apply opacity-50;
+
+    .#{$choices-selector}__button {
+        @apply hidden;
+    }
+}
+
 .#{$choices-selector} {
     .#{$choices-selector}__inner {
         @apply block rounded-md border-gray-300 shadow-sm w-full;
