@@ -16,5 +16,8 @@
         "target": "es2018",
         "noEmit": true,
         "jsx": "react"
-    }
+    },
+    "exclude": [
+        "**/dist/**/*" // This is what fixed it!
+    ],
 }

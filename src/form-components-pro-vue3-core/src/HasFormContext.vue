@@ -25,6 +25,18 @@ export default {
 
       return true;
     },
+
+    formIsProcessing() {
+      if (!this.formContext) {
+        return false;
+      }
+
+      if (!this.formContext.model) {
+        return false;
+      }
+
+      return this.formContext.model.processing ? true : false;
+    },
   },
 
   methods: {

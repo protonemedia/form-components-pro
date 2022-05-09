@@ -34,5 +34,15 @@ export default {
       required: false,
     },
   },
+
+  computed: {
+    isProcessing() {
+      if (!this.modelValue) {
+        return false;
+      }
+
+      return this.modelValue.processing ? true : false;
+    },
+  },
 };
 </script>

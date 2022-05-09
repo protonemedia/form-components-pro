@@ -1,6 +1,8 @@
 <template>
   <form v-bind="$attrs" :method="method">
-    <slot />
+    <fieldset :disabled="isProcessing">
+      <slot />
+    </fieldset>
   </form>
 </template>
 

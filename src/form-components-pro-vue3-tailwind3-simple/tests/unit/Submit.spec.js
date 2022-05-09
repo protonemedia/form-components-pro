@@ -15,4 +15,21 @@ describe('Tailwind v3 Submit.vue', () => {
         const radio = wrapper.find('form#bound-form button[type="submit"]')
         expect(radio.text()).toBe("Click here!");
     })
+
+    it('shows a spinner whenever the form is processing', async () => {
+        const wrapper = mount(Component)
+
+        expect(wrapper.find('form#misc-form button[type="submit"]').exists()).toBe(true);
+        expect(wrapper.find('form#misc-form button[type="submit"] svg').exists()).toBe(false);
+
+        wrapper.vm.resource.processing = true;
+
+        await wrapper.vm.$nextTick();
+
+        console.log(
+            wrapper.find('form#misc-form button[type="submit"]').html()
+        );
+
+        expect(wrapper.find('form#misc-form button[type="submit"] svg').exists()).toBe(true);
+    })
 })

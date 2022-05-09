@@ -132,6 +132,8 @@
         choices
         multiple
       />
+
+      <Submit />
     </div>
   </Form>
 </template>
@@ -163,6 +165,7 @@ const resource = reactive({
   multiSelect: ["a"],
   file: null,
   multiFile: null,
+  processing: false,
 });
 
 const selectOptions = [
