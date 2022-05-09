@@ -1,5 +1,5 @@
 <script>
-import { find, get, forEach, isObject, isString } from "lodash-es";
+import { find, get, forEach, isArray, isObject, isString } from "lodash-es";
 import Element from "./Element.vue";
 
 export default {
@@ -54,6 +54,18 @@ export default {
   },
 
   computed: {
+    hasSelection() {
+      if (this.multiple) {
+        return isArray(this.model) ? this.model.length > 0 : false;
+      }
+
+      if (this.model === null || this.model === "") {
+        return false;
+      }
+
+      return true;
+    },
+
     optionsContainPlaceholder() {
       return find(this.arrayOptions, (option) => {
         return option.value === "";
@@ -146,6 +158,8 @@ export default {
         }
 
         this.choicesInstance.setChoiceByValue(updatedValue);
+
+        this.updateHasSelectionAttribute();
       }
     },
   },
@@ -200,6 +214,13 @@ export default {
       }
     },
 
+    updateHasSelectionAttribute() {
+      this.choicesInstance.containerInner.element.setAttribute(
+        "data-has-selection",
+        this.hasSelection
+      );
+    },
+
     initChoices(selectElement) {
       const vm = this;
 
@@ -214,6 +235,8 @@ export default {
           "data-select-name",
           vm.name
         );
+
+        vm.updateHasSelectionAttribute();
 
         selectElement.addEventListener("change", function () {
           if (vm.multiple) {

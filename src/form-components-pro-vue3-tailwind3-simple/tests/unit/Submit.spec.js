@@ -33,10 +33,6 @@ describe('Tailwind v3 Submit.vue', () => {
 
         await wrapper.vm.$nextTick();
 
-        console.log(
-            wrapper.find('form#misc-form button[type="submit"]').html()
-        );
-
         expect(wrapper.find('form#misc-form button[type="submit"] svg').exists()).toBe(true);
     })
 })

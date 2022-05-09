@@ -107,4 +107,42 @@ describe('Tailwind v3 Select.vue', () => {
         expect(select.choicesInstance.config.loadingText).toEqual("Waiting...");
     });
 
+    it('sets a data attribute when a selection has been made', async () => {
+        const wrapper = mount(Component)
+        await wrapper.vm.$nextTick();
+        await wrapper.vm.$nextTick();
+
+        const select = wrapper.findComponent({ ref: 'customSelect' });
+
+        expect(select.html()).toContain('data-select-name="customSelect"');
+        expect(select.html()).toContain('data-has-selection="true"');
+
+        wrapper.vm.resource.customSelect = null;
+
+        await wrapper.vm.$nextTick()
+        await wrapper.vm.$nextTick()
+
+        expect(select.html()).toContain('data-select-name="customSelect"');
+        expect(select.html()).toContain('data-has-selection="false"');
+    });
+
+    it('sets a data attribute when a multiple selection has been made', async () => {
+        const wrapper = mount(Component)
+        await wrapper.vm.$nextTick();
+        await wrapper.vm.$nextTick();
+
+        const select = wrapper.findComponent({ ref: 'multiSelect' });
+
+        expect(select.html()).toContain('data-select-name="multiSelect"');
+        expect(select.html()).toContain('data-has-selection="true"');
+
+        wrapper.vm.resource.multiSelect = [];
+
+        await wrapper.vm.$nextTick()
+        await wrapper.vm.$nextTick()
+
+        expect(select.html()).toContain('data-select-name="multiSelect"');
+        expect(select.html()).toContain('data-has-selection="false"');
+    });
+
 })
