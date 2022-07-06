@@ -1,6 +1,6 @@
 $choices-bg-color: white;
 
-@import "~choices.js/src/styles/choices";
+@import "choices.js/src/styles/choices";
 
 span+.#{$choices-selector} {
     @apply mt-1;
